@@ -54,4 +54,9 @@ public class ZooController {
 	public Zoo updateAnimalList(@RequestBody Zoo animal) {
 		return zooS.updateAnimalById(animal);
 	}
+	
+	@GetMapping("/sortByNumber/{dir}")
+	public List<Zoo> getSortedByNumber(@PathVariable String dir){
+		return zooS.sortAnimalByNumber(dir);
+	}
 }

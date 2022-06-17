@@ -2,10 +2,10 @@ package com.example.zoo.service;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.function.Predicate;
 import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.domain.Sort;
 import org.springframework.stereotype.Service;
 
 import com.example.zoo.entity.Zoo;
@@ -52,7 +52,13 @@ public class ZooService {
 		existingAnimal.setType(animal.getType());
 		existingAnimal.setHabitat(animal.getHabitat());
 		existingAnimal.setNumber(animal.getNumber());
-
 		return zooI.save(animal);
+	}
+	
+	public List<Zoo> sortAnimalByNumber(String dir){
+		if(dir.equals("asc"))
+			return zooI.findAll(Sort.by(Sort.Direction.ASC, "number"));
+		else
+			return zooI.findAll(Sort.by(Sort.Direction.DESC, "number"));
 	}
 }
