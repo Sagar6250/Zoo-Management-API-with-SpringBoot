@@ -56,9 +56,6 @@ public class ZooService {
 	}
 	
 	public List<Zoo> sortAnimalByNumber(String dir){
-		if(dir.equals("asc"))
-			return zooI.findAll(Sort.by(Sort.Direction.ASC, "number"));
-		else
-			return zooI.findAll(Sort.by(Sort.Direction.DESC, "number"));
+			return zooI.findAll(Sort.by(Sort.Direction.fromString(dir), "number"));
 	}
 }
